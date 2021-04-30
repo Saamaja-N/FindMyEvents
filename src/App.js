@@ -1,25 +1,36 @@
 import logo from './logo.svg';
 import './App.css';
+import React, {Component} from 'react';
+import { BrowserRouter, Route, Link, Router } from "react-router-dom";
+import Home from './components/Home';
+import UserList from './components/userlist';
+import EmployeeList from './components/EmployeeList';
+import EmployeeDetails from './components/EmployeeDetails';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component{
+state = {
+  loggedIn: false
+}
+
+loginHandle = () => {
+ this.setState(prevState => ({
+   loggedIn: !prevState.loggedIn
+ }))
+}
+
+  render(){
+    return(
+      <div>
+        <BrowserRouter>
+       
+          <Route path="/" render={Home}></Route>
+          <Route path="/userlist" component={UserList}></Route>
+          <Route path="/emp" component={EmployeeList}></Route>
+          <Route path="/empdetails" component={EmployeeDetails}></Route>
+        </BrowserRouter>
+        </div>
+    )
+  }
 }
 
 export default App;
